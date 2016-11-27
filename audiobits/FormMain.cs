@@ -28,7 +28,6 @@ using System.Collections.ObjectModel;
  */
 
 
-
 namespace audiobits
 {
     public partial class FormMain : Form
