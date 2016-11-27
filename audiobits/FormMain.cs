@@ -22,6 +22,10 @@ using CSCore.SoundOut;
 using CSCore.Codecs;
 using System.Collections.ObjectModel;
 
+/*
+ * very heavily uses the CsCore demo apps - needs tidying up and making the live input work
+ * 
+ */
 
 
 
@@ -32,8 +36,6 @@ namespace audiobits
 
         //for the track bar
         private bool _stopSliderUpdate;
-
-
 
 
         private const CaptureMode captureMode = CaptureMode.LoopbackCapture;
@@ -152,7 +154,12 @@ namespace audiobits
             comboBoxOutputDevice.DisplayMember = "FriendlyName";
             comboBoxOutputDevice.ValueMember = "DeviceID";
 
-            comboBoxOutputDevice.SelectedIndex = 2;
+
+            // if my computer select the right output
+            if (System.Environment.MachineName == "PC5")
+            {
+                comboBoxOutputDevice.SelectedIndex = 2;
+            }
         }
 
 
@@ -404,6 +411,11 @@ namespace audiobits
         {
             dummyMask.Mask = FilterBitDepth.SetBitMask(bits);
             this.labelBitDepth.Text = bits.ToString() + " Bit" + (bits == 1 ? "" : "s") + " = " + Convert.ToString(dummyMask.Mask, 2);
+        }
+
+        private void buttonSong3_Click(object sender, EventArgs e)
+        {
+            this.textBoxAudioFile.Text = @"\\192.168.1.251\d\media\mp3\Eagles - Journey Of The Sorcerer.mp3";
         }
     }
 
